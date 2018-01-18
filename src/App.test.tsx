@@ -14,11 +14,11 @@ it('returns form has error if input value is not number', () => {
   const MyFormModel = new FormModel();
   MyFormModel.ElemModelCollection = [new FormElementModel([new MustBeNumber()], 'firstinp') ];
   MyFormModel.UpdateValidationState('a', 'firstinp');
-  expect(MyFormModel.valid).toBeFalsy();
+  expect(MyFormModel.Valid).toBeFalsy();
 });
 it('returns form has no error if input value is a number', () => {
   const MyFormModel = new FormModel();
   MyFormModel.ElemModelCollection = [new FormElementModel([new MustBeNumber()], 'firstinp') ];
   MyFormModel.UpdateValidationState('1', 'firstinp');
-  expect(MyFormModel.valid).toBeTruthy();
+  expect(MyFormModel.Valid).toBeTruthy();
 });

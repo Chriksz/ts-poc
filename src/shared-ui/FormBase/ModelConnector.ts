@@ -10,7 +10,7 @@ export default class ModelConnector {
     }
     UpdateParent() {
         const newsState = {};
-        newsState[this.Model.name] = this.Model;
+        newsState[this.Model.Name] = this.Model;
         this.Component.setState(newsState);
     }
 }

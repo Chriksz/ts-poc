@@ -1,37 +1,34 @@
 import Validator from './validators/Validator';
 
 export default class FormElementModel {
-    valid: boolean;
-    validatorCollection: Array<Validator>;
-    name: string;
-    value: string;
+    Valid: boolean;
+    ValidatorCollection: Array<Validator>;
+    Name: string;
+    Value: string;
     constructor(validators: Array<Validator>, name: string) {
-        this.validatorCollection = validators;
-        this.name = name;
+        this.ValidatorCollection = validators;
+        this.Name = name;
     }
     TriggerValidators(): boolean {
-        this.validatorCollection.forEach((validator) => {
-            this.valid = validator.validate(this.value) && this.valid;
+        this.ValidatorCollection.forEach((validator) => {
+            this.Valid = validator.Validate(this.Value) && this.Valid;
         });
-        return this.valid;
+        return this.Valid;
     }
-    updateState(value: string): boolean {
-        this.valid = true;
-        this.value = value;
+    UpdateState(value: string): boolean {
+        this.Valid = true;
+        this.Value = value;
         return this.TriggerValidators();
     }
     IsValid(): boolean { 
         return this.TriggerValidators();
     }
-    getCurrentErrors(): Array<Validator> {
-        return this.validatorCollection.filter((elem) => !elem.valid);
+    GetCurrentErrors(): Array<Validator> {
+        return this.ValidatorCollection.filter((elem) => !elem.Valid);
     }
-    getCurrentErrorMsgs(): Array<string> {
-        const errors: Array<Validator>  = this.getCurrentErrors();
-        const erroStrings: Array<string> = new Array();
-        errors.forEach((elem) => {
-            erroStrings.push(elem.errorMsg);
-        });
+    GetCurrentErrorMsgs(): Array<string> {
+        const errors: Array<Validator>  = this.GetCurrentErrors();
+        const erroStrings: Array<string> = errors.map(elem => elem.ErrorMsg);
         return erroStrings;
     }
 }

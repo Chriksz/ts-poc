@@ -8,7 +8,7 @@ interface Props {
     name: string;
 }
 interface State {
-    ElementModel: FormElementModel;
+    ElementModel: FormElementModel; 
 }
 class FormInput extends FormElementBase<Props, State> {
     constructor(props: any) {
@@ -36,7 +36,7 @@ class FormInput extends FormElementBase<Props, State> {
 
                     }}
                 />
-                {this.state.ElementModel.getCurrentErrorMsgs().map((result) => {
+                {this.state.ElementModel.GetCurrentErrorMsgs().map((result) => {
                     return result;
                 })}
             </h2>

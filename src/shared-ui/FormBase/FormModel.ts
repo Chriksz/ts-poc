@@ -1,22 +1,22 @@
 import FormElementModel from './FormElementModel';
 export default class FormModel {
     ElemModelCollection: Array<FormElementModel>;
-    name: string;
-    valid: boolean;
+    Name: string;
+    Valid: boolean;
     UpdateValidationState(value: string, inputName: string): boolean {
-        this.valid = true;
-        const toUpdate = this.ElemModelCollection.find(elem => elem.name === inputName);
+        this.Valid = true;
+        const toUpdate = this.ElemModelCollection.find(elem => elem.Name === inputName);
         if (!toUpdate) {
             throw new Error('No element like this!');
         }
-        toUpdate.updateState(value);
+        toUpdate.UpdateState(value);
         this.ElemModelCollection.forEach((elem) => {
-            this.valid = elem.IsValid() && this.valid;
+            this.Valid = elem.IsValid() && this.Valid;
         });
-        return this.valid;
+        return this.Valid;
     }
     GetElementByName(name: string): FormElementModel {
-        const finding = this.ElemModelCollection.find(elem => name === elem.name);
+        const finding = this.ElemModelCollection.find(elem => name === elem.Name);
         if (!finding) {
             throw new Error('Could not retrive element!');
         }

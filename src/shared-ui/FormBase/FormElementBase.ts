@@ -17,6 +17,6 @@ export default class FormElementBase<BaseProps, BaseState> extends React.Compone
         if (!element) {
             throw new Error('Element with name is not found!');
         }
-        return element.getCurrentErrorMsgs();
+        return element.GetCurrentErrorMsgs();
     }
 }

@@ -15,7 +15,7 @@ class App extends React.Component<{}, AppState> {
   constructor(props: any) {
     super(props);
     const model = new FormModel();
-    model.name = 'MyFormModel';
+    model.Name = 'MyFormModel';
     model.ElemModelCollection = [
       new FormElementModel([new MustBeNumber()], 'firstinp'), 
       new FormElementModel([new MustBeNumber()], 'secondinput')
@@ -35,7 +35,7 @@ class App extends React.Component<{}, AppState> {
         </p>
         <FormInput modelConnector={this.Connector} name="firstinp"/>
         <FormInput modelConnector={this.Connector} name="secondinput"/>
-        Form State: {this.state.MyFormModel.valid ? 'valid' : 'invalid'}
+        Form State: {this.state.MyFormModel.Valid ? 'valid' : 'invalid'}
       </div>
     );
   }
