@@ -21,7 +21,6 @@ class App extends React.Component<{}, AppState> {
       new FormElementModel([new MustBeNumber()], 'secondinput')
     ];
     this.Connector = new ModelConnector(model, this);
-    this.state = { MyFormModel: model};
   }
   render() {
     return (

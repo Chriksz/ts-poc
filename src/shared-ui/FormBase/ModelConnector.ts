@@ -7,6 +7,10 @@ export default class ModelConnector {
     constructor(Model: FormModel, Component: React.Component) {
         this.Model = Model;
         this.Component = Component;
+        if (!this.Component.state) {
+            this.Component.state = {};
+        }
+        this.Component.state[this.Model.Name] = this.Model;
     }
     UpdateParent() {
         const newsState = {};
