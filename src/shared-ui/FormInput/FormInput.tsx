@@ -2,10 +2,11 @@ import * as React from 'react';
 import FormElementBase from '../FormBase/FormElementBase';
 import ModelConnector from '../FormBase/ModelConnector';
 import FormElementModel from '../FormBase/FormElementModel';
-
+import Validator from '../FormBase/validators/Validator';
 interface Props {
     modelConnector: ModelConnector;
     name: string;
+    validators: Array<Validator>;
 }
 interface State {
     ElementModel: FormElementModel; 
@@ -15,8 +16,10 @@ class FormInput extends FormElementBase<Props, State> {
         super(props);
         this.FormModel = props.modelConnector.Model;
         this.Name = props.name;
+        const model = new FormElementModel(this.props.validators, this.Name);
+        this.FormModel.ElemModelCollection.push(model);
         this.state = {
-            ElementModel: this.FormModel.GetElementByName(this.Name)
+            ElementModel: new FormElementModel(this.props.validators, this.Name)
         };
     }
     render() {
