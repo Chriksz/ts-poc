@@ -1,26 +1,20 @@
 import * as React from 'react';
 import './App.css';
-import FormInput from './shared-ui/FormInput/FormInput';
-import FormModel from './shared-ui/FormBase/FormModel';
-import FormElementModel from './shared-ui/FormBase/FormElementModel';
-import MustBeNumber from './shared-ui/FormBase/validators/MustBeNumber';
-import ModelConnector from './shared-ui/FormBase/ModelConnector';
+
+import FormModel from './shared-ui/Forms/FormModel';
+import NumberValidator from './shared-ui/Forms/Validators/NumberValidator';
+import TextField from './shared-ui/Forms/Elements/TextField';
 
 const logo = require('./logo.svg');
 interface AppState {
-  MyFormModel: FormModel;
+  myForm: FormModel;
 }
 class App extends React.Component<{}, AppState> {
-  Connector: ModelConnector;
   constructor(props: any) {
     super(props);
-    const model = new FormModel();
-    model.Name = 'MyFormModel';
-    model.ElemModelCollection = [
-      new FormElementModel([new MustBeNumber()], 'firstinp'), 
-      new FormElementModel([new MustBeNumber()], 'secondinput')
-    ];
-    this.Connector = new ModelConnector(model, this);
+    this.setState({
+      myForm: new FormModel()
+    });
   }
   render() {
     return (
@@ -32,9 +26,9 @@ class App extends React.Component<{}, AppState> {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <FormInput modelConnector={this.Connector} name="firstinp"/>
-        <FormInput modelConnector={this.Connector} name="secondinput"/>
-        Form State: {this.state.MyFormModel.Valid ? 'valid' : 'invalid'}
+        <TextField form={this.state.myForm} validators={[NumberValidator]} name="height"/>
+        <TextField form={this.state.myForm} validators={[NumberValidator]} name="age"/>
+        Form State: {this.state.myForm.valid ? 'valid' : 'invalid'}
       </div>
     );
   }
