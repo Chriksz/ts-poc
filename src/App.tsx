@@ -2,7 +2,6 @@ import * as React from 'react';
 import './App.css';
 import FormInput from './shared-ui/FormInput/FormInput';
 import FormModel from './shared-ui/FormBase/FormModel';
-import FormElementModel from './shared-ui/FormBase/FormElementModel';
 import MustBeNumber from './shared-ui/FormBase/validators/MustBeNumber';
 import ModelConnector from './shared-ui/FormBase/ModelConnector';
 
@@ -16,10 +15,6 @@ class App extends React.Component<{}, AppState> {
     super(props);
     const model = new FormModel();
     model.Name = 'MyFormModel';
-    model.ElemModelCollection = [
-      new FormElementModel([new MustBeNumber()], 'firstinp'), 
-      new FormElementModel([new MustBeNumber()], 'secondinput')
-    ];
     this.Connector = new ModelConnector(model, this);
   }
   render() {
@@ -32,8 +27,8 @@ class App extends React.Component<{}, AppState> {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <FormInput modelConnector={this.Connector} name="firstinp"/>
-        <FormInput modelConnector={this.Connector} name="secondinput"/>
+        <FormInput modelConnector={this.Connector} validators={[new MustBeNumber()]} name="firstinp"/>
+        <FormInput modelConnector={this.Connector} validators={[new MustBeNumber()]} name="secondinput"/>
         Form State: {this.state.MyFormModel.Valid ? 'valid' : 'invalid'}
       </div>
     );

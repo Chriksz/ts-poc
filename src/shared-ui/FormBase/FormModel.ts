@@ -1,6 +1,6 @@
 import FormElementModel from './FormElementModel';
 export default class FormModel {
-    ElemModelCollection: Array<FormElementModel>;
+    ElemModelCollection: Array<FormElementModel> = [];
     Name: string;
     Valid: boolean;
     UpdateValidationState(value: string, inputName: string): boolean {
