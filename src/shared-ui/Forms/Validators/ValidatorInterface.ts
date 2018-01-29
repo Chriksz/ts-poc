@@ -1,5 +1,10 @@
+
 export default interface ValidatorInterface {
-  ErrorMsg: string;
-  Valid: boolean;
-  Validate(formValue: string): boolean;
+    errorMsg: string;
+    valid: boolean;
+    validate(formValue: string): boolean;
+}
+
+export interface Validator {
+    new (): ValidatorInterface;
 }

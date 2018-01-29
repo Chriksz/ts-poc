@@ -1,43 +1,32 @@
 import * as React from 'react';
+import FormElementBase, { Props } from './FormElementBase';
 
-interface Props {
-    modelConnector: ModelConnector;
-    name: string;
-}
-interface State {
-    ElementModel: FormElementModel; 
-}
-class FormInput extends FormElementBase<Props, State> {
-    constructor(props: any) {
+class TextField extends FormElementBase<{}> {
+    constructor(props: Props) {
         super(props);
-        this.FormModel = props.modelConnector.Model;
-        this.Name = props.name;
-        this.state = {
-            ElementModel: this.FormModel.GetElementByName(this.Name)
-        };
     }
+
     render() {
         return (
-            <h2>
+            <div>
                 <input
-                    name={this.Name}
-                    onChange={(event) => {
-                        this.UpdateValidationState(event.currentTarget.value);
-
-                        this.setState({
-                            ElementModel: this.FormModel.GetElementByName(this.Name)
-                        }, 
-                        () => { 
-                            this.props.modelConnector.UpdateParent(); 
-                        });
-
+                    name={this.name}
+                    onChange={event => {
+                        this.updateFormElementValue(event.currentTarget.value);
                     }}
                 />
-                {this.state.ElementModel.GetCurrentErrorMsgs().map((result) => {
-                    return result;
-                })}
-            </h2>
+                <ul>
+                    {this.getCurrentErrorMsgs().map(result => {
+                        return (
+                            <li key={result}>
+                                {result}
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
         );
     }
 }
-export default FormInput;
+
+export default TextField;
