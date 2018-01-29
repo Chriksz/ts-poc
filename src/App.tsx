@@ -5,7 +5,7 @@ import FormModel from './shared-ui/Forms/FormModel';
 import NumberValidator from './shared-ui/Forms/Validators/NumberValidator';
 import TextField from './shared-ui/Forms/Elements/TextField';
 
-class App extends React.Component<{}, {}> {
+class App<BaseProps, BaseState> extends React.Component<BaseProps, BaseState> {
   myForm: FormModel;
 
   constructor(props: any) {
